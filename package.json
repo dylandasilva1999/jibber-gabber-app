@@ -16,6 +16,7 @@
   "author": "Dylan da Silva",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^4.5.0",
     "es6-template-strings": "^2.0.1",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0"

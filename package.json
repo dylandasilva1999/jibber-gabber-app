@@ -1,0 +1,18 @@
+{
+  "name": "jibber-gabber",
+  "version": "0.0.1",
+  "description": "Jibber Gabber is a friendly interactive chat room web application wwhere users can join chat rooms, or direct message other user with the use of Node.js server and Socket.io.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Chat",
+    "Room",
+    "App",
+    "Communicate",
+    "Chatting"
+  ],
+  "author": "Dylan da Silva",
+  "license": "ISC"
+}

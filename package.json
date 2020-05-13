@@ -14,5 +14,9 @@
     "Chatting"
   ],
   "author": "Dylan da Silva",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0"
+  }
 }

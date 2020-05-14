@@ -1,17 +1,16 @@
-var http = require('http'); 
-var queryString = require('querystring'); 
+const http = require('http'); 
+const queryString = require('querystring'); 
 var fs =  require('fs'); 
-var template = require('es6-template-strings'); 
+const template = require('es6-template-strings'); 
 
 var contacts = []; 
 
-var server = http.createServer(); 
+const server = http.createServer(); 
 
 var simpleRouter = function(request) {
   var method = request.method;
   var path = request.url;
 
-  // Strip the query from the ? character
   var queryIndex = request.url.indexOf('?');
   if (queryIndex >= 0) {
     path = request.url.slice(0, queryIndex)
@@ -23,7 +22,6 @@ var simpleRouter = function(request) {
     {method: 'POST', path: '/', handler: handleFormPost}
   ];
 
-  // Match the supplied route with the route visited and call the respective handler
   for (var i = 0; i < routes.length; i++) {
     var route = routes[i];
     if ( route.method === suppliedRoute.method &&
@@ -34,7 +32,6 @@ var simpleRouter = function(request) {
   return null;
 }
 
-// A function to handle the GET Requests
 var handleFormGet = function(request, response) {
   response.writeHead(200, {"Content-Type": "text/html"});
   fs.readFile('./templates/login.html', 'utf8', function(err, data) {
@@ -44,7 +41,6 @@ var handleFormGet = function(request, response) {
   });
 }
 
-// A function to handle the POST Requests
 var handleFormPost = function(request, response) {
   response.writeHead(200, {"Content-Type": "text/html"});
   var payload = '';
@@ -67,7 +63,6 @@ var handleFormPost = function(request, response) {
 }
 
 
-// Call the 'on' method on the server to handle the incoming request
 server.on("request", function(request, response) {
   var handler = simpleRouter(request);
   if (handler != null) {
@@ -79,6 +74,5 @@ server.on("request", function(request, response) {
 })
 
 server.listen(8080, function() {
-  // Console Log this to indicate where the server started.
   console.log('Listening on port 8080...')
 });

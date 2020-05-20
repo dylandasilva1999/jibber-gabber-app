@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!-- HEAD -->
+    <head>
+
+        <!-- META DATA -->
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=egde">      
+        
+        <!-- CSS LINKS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+        <!-- WEBSITE TITLE -->
+        <title>Jibber Gabber | Log In</title>
+        <link rel="icon" href="../public/img/logo-icon.svg"> 
+        
+        <style>
+            html {
+                scroll-behavior: smooth;
+                overflow-x: hidden;
+            }
+
+            * {
+                margin: 0px;
+                padding: 0px;
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: "Montserrat", sans-serif;
+                width: 100%;
+                height: 100vh;
+                background: linear-gradient(90deg, rgba(241,97,84,1) 0%, rgba(221,43,102,1) 100%);
+            }
+
+            @font-face {
+                font-family: 'quicksandbold';
+                src: url('../public/fonts/quicksand-bold-webfont.woff') format('woff');
+                font-weight: normal;
+                font-style: normal;
+
+            }
+
+            @font-face {
+                font-family: 'quicksandlight';
+                src: url('../public/fonts/quicksand-light-webfont.woff') format('woff');
+                font-weight: normal;
+                font-style: normal;
+
+            }
+
+            @font-face {
+                font-family: 'quicksandregular';
+                src: url('../public/fonts/quicksand-regular-webfont.woff') format('woff');
+                font-weight: normal;
+                font-style: normal;
+
+            }
+
+            @font-face {
+                font-family: 'pacificoregular';
+                src: url('../public/fonts/pacifico-webfont.woff') format('woff');
+                font-weight: normal;
+                font-style: normal;
+
+            }
+
+            a {
+                text-decoration: none;
+                color: white;
+            }
+
+            a,
+            a:hover,
+            a:active,
+            a:visited,
+            a:focus {
+                text-decoration: none;
+                color: white;
+            }
+
+            h1{
+                font-size: 90px;
+            }
+
+            .log-in-container {
+                height: 70vh;
+                background-color: blueviolet;
+                position: absolute; 
+                left:0; right:0;
+                top:0; bottom:0;
+                margin: auto;
+                box-shadow: 30px 30px 5px 0px rgba(0,0,0,0.12);
+            }
+
+            .left-side {
+                background-color: white;
+            }
+
+            .right-side {
+                background-color: white;
+                height: 70vh;
+                border-top: 70vh solid rgb(241,97,84);;
+                border-left: 250px solid transparent;
+                border-right: 0px solid transparent;
+            }
+
+            .form-container {
+                height: 65vh;
+                margin-top: 25px;
+                margin-left: 8%;
+         
+            }
+
+            .form-header {
+                height: 400px;
+            }
+
+            .logo-container {
+                height: 100px;
+                padding-top: 80px;
+            }
+
+            .logo-icon {
+                background-image: url("../public/img/logo-icon.svg");
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                width: 220px;
+                height: 220px;
+                border-radius: 50%;
+                margin-top: -70px;
+                float: left;
+                margin-left: 0%;
+            }
+
+            .logo-text {
+                width: 58%;
+                height: 50px;
+                margin-top: -125px;
+                margin-left: 40%;
+                float: left;
+                font-family: "pacificoregular";
+                color: #333;
+                font-size: 35px;
+            }
+
+            .logo-text h2 {
+                font-size: 36px;
+            }
+
+            .welcome-text {
+                font-size: 18px;
+                float: left;
+                width: 200px;
+                height: 35px;
+                margin-top: 0px;
+                margin-left: 8%;
+                font-family: "quicksandregular";
+            }
+
+            .welcome-text  h2 {
+                font-size: 30px;
+            }
+
+            .user-login {
+                width: 100%;
+                height: 55px;
+                float: left;
+                margin-left: 5%;
+                margin-top: 20px;
+                font-family: "pacificoregular";
+                color: #333;
+            }
+
+            .user-login  h2 {
+                font-size: 48px;
+            }
+
+            .divider-login {
+                width: 85%;
+                height: 8px;
+                background: linear-gradient(90deg, rgba(241,97,84,1) 0%, rgba(221,43,102,1) 100%);
+                float: left;
+                margin-top: 30px;
+                margin-left: 8%;
+                border-radius: 20px;
+            }
+
+            .input-container {
+                margin-top: 30px;
+            }
+
+            .username {
+               margin-top: 0px;
+               border-width: thick;
+               border-color: rgb(241,97,84);
+               border-top: transparent;
+               border-left: transparent;
+               border-right: transparent;
+               background-color: transparent;
+            }
+
+            .password {
+               margin-top: 0px;
+               border-width: thick;
+               border-color: rgb(241,97,84);
+               border-top: transparent;
+               border-left: transparent;
+               border-right: transparent;
+               background-color: transparent;
+            }
+
+            label {
+                display: block;
+                width: 92%;
+                font-weight: bold;
+                font-family: "quicksandlight";
+                font-size: 20px;
+            }
+
+            input {
+                display: block;
+                width: 92%;
+                font-family: "quicksandbold";
+                font-size: 20px;
+            }
+
+            .login-form {
+                margin-left: 8%;
+                
+            }
+
+            .password-label {
+                margin-top: 40px;
+            }
+
+            .login-btn{
+                margin-top: 90px;
+                height: 60px;
+                border-color: transparent;
+                border-radius: 30px;
+                background: linear-gradient(90deg, rgba(241,97,84,1) 0%, rgba(221,43,102,1) 100%);
+                color: white;
+            }
+
+            .logo-text-container {
+                position: absolute;
+                width: 60%;
+                height: 60px;
+                margin-top: -780px;
+                background-color: white;
+                margin-left: 5%;
+            }
+
+            .text-container {
+                position: absolute;
+                width: 80%;
+                height: 60px;
+                margin-top: -745px;
+                margin-left: -30%;
+                color: whitesmoke;
+                font-family: "quicksandlight";
+            }
+
+            .text-container h2 {
+                font-size: 25px;
+            }
+
+            .illustration {
+                background-image: url("../public/img/login-illustration.svg");
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                width: 900px;
+                height: 900px;
+                margin-top: -838px;
+                margin-left: -63.5%;
+                z-index: 999;
+            }
+            
+        </style>
+        
+    </head> <!-- END OF HEAD -->
+    
+    <!--BODY-->
+    <body class="template">
+
+        <!--MAIN-->
+        <main>
+
+            <div class="container col-xl-6 log-in-container d-none d-xl-block">
+                <div class="row">
+                    <div class="left-side col-xl-5">
+                        <div class="form-container">
+
+                            <div class="form-header">
+
+                                <div class="logo-container col-xl-12">
+
+                                    <div class="logo-icon"></div>
+
+                                    <div class="logo-text">
+                                    </div> <!--Logo Text-->
+
+                                </div><!--Logo Container-->
+
+                                <div class="login-title-container col-xl-12">
+
+                                    <div class="welcome-text">
+                                        <h2>Welcome to</h2>
+                                    </div><!--Welcome Text-->
+    
+                                    <div class="user-login">
+                                        <h2>Jibber Gabber</h2>
+                                    </div><!--User Login-->
+                                    
+                                    <div class="divider-login"></div>
+
+                                </div><!--Divider Login-->
+                                
+                            </div><!--Form Header-->
+                            
+                            <div class="input-container col-xl-12">
+
+                                <form method="POST" class="login-form">
+                                    <label for="username">Username</label>
+                                    <input type="text" name="username" class="username">
+                                    <label for="password" class="password-label">Password</label>
+                                    <input type="password" name="passwsord" class="password">
+                                    <input type="submit" value="Log In" class="login-btn">
+                                </form>
+
+                            </div><!--Input Container-->
+
+                        </div><!--Form Container-->
+                    </div><!--Left Side Form-->
+
+                    <div class="right-side col-xl-7">
+
+                        <div class="text-container">
+                            <h2>For your rapid and exciting talking needs!</h2>
+                        </div>
+
+                        <div class="illustration"></div>
+
+                    </div><!--Right Side-->
+
+                </div><!--Row-->
+            </div> <!--Log In Container-->
+
+        </main>
+
+        <!--FOOTER-->
+        <footer>
+
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    </body>
+
+</html>    

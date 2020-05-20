@@ -34,7 +34,7 @@ var simpleRouter = function(request) {
 
 var handleFormGet = function(request, response) {
   response.writeHead(200, {"Content-Type": "text/html"});
-  fs.readFile('./templates/login.html', 'utf8', function(err, data) {
+  fs.readFile('./public/login.html', 'utf8', function(err, data) {
     if (err) { throw err; }
     response.write(data);
     response.end();
@@ -53,7 +53,7 @@ var handleFormPost = function(request, response) {
     var post = queryString.parse(payload);
     contacts.push(post['username']);
     response.writeHead(200, {"Content-Type": "text/html"});
-    fs.readFile('./templates/chat.html', 'utf8', function(err, data) {
+    fs.readFile('./public/chat.html', 'utf8', function(err, data) {
       if (err) { throw err; }
       var compiled = template(data, {username: post['username'], userList: contacts.join(",")});
       response.write(compiled);

@@ -18,6 +18,9 @@
   "dependencies": {
     "bootstrap": "^4.5.0",
     "es6-template-strings": "^2.0.1",
+    "jquery": "^3.5.1",
+    "node-static": "^0.7.11",
+    "popper.js": "^1.16.1",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0"
   }

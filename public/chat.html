@@ -11,12 +11,276 @@
         <meta http-equiv="X-UA-Compatible" content="ie=egde">      
         
         <!-- FILE LINKS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         
         <!-- WEBSITE TITLE -->
         <title>Jibber Gabber | Chat</title>
-        <link rel="icon" href="../templates/img/logo-icon.svg">
+        <link rel="icon" href="../public/img/logo-icon.svg">
         
         <style>
+
+            html {
+                scroll-behavior: smooth;
+                overflow-x: hidden;
+            }
+
+            * {
+                margin: 0px;
+                padding: 0px;
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: "Montserrat", sans-serif;
+                width: 100%;
+                height: 100vh;
+                background: linear-gradient(90deg, rgba(49,50,56) 0%, rgba(22,22,25) 100%);
+            }
+
+            @font-face {
+                font-family: 'quicksandbold';
+                src: url('../public/fonts/quicksand-bold-webfont.woff') format('woff');
+                font-weight: normal;
+                font-style: normal;
+
+            }
+
+            @font-face {
+                font-family: 'quicksandlight';
+                src: url('../public/fonts/quicksand-light-webfont.woff') format('woff');
+                font-weight: normal;
+                font-style: normal;
+
+            }
+
+            @font-face {
+                font-family: 'quicksandregular';
+                src: url('../public/fonts/quicksand-regular-webfont.woff') format('woff');
+                font-weight: normal;
+                font-style: normal;
+
+            }
+
+            @font-face {
+                font-family: 'pacificoregular';
+                src: url('../public/fonts/pacifico-webfont.woff') format('woff');
+                font-weight: normal;
+                font-style: normal;
+
+            }
+
+            a {
+                text-decoration: none;
+                color: white;
+            }
+
+            a,
+            a:hover,
+            a:active,
+            a:visited,
+            a:focus {
+                text-decoration: none;
+                color: white;
+            }
+
+            h1{
+                font-size: 90px;
+            }
+
+            .chatroom-container {
+                background-color: white;
+                height: 70vh;
+                left:0; right:0;
+                top:0; bottom:0;
+                position: fixed;
+                margin: auto;
+                box-shadow: 30px 30px 5px 0px rgba(0,0,0,0.12);
+            }
+
+            .header-bar {
+                height: 8vh;
+                background: rgb(49,50,56);
+            }
+
+            .side-bar {
+                height: 62vh;
+                background-color: brown;
+            }
+
+            .navbar {
+                padding: 15px 10px;
+                background: #fff;
+                border: none;
+                border-radius: 0;
+                margin-bottom: 40px;
+                box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .navbar-btn {
+                box-shadow: none;
+                outline: none !important;
+                border: none;
+            }
+
+            .line {
+                width: 100%;
+                height: 1px;
+                border-bottom: 1px dashed #ddd;
+                margin: 40px 0;
+            }
+
+            i,
+            span {
+                display: inline-block;
+            }
+
+            /* ---------------------------------------------------
+                SIDEBAR STYLE
+            ----------------------------------------------------- */
+
+            .wrapper {
+                display: flex;
+                align-items: stretch;
+            }
+
+            .btn {
+                background-color: white;
+            }
+
+            #sidebarCollapse {
+                width: 40px;
+                height: 40px;
+                background-color: transparent;
+                float: right;
+                background-image: url("../public/img/full-bar.svg");
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                border: none;
+            }
+
+            #sidebar {
+                min-width: 300px;
+                max-width: 300px;
+                height: 62vh;
+                background: rgb(221,43,102,1);
+                color: #fff;
+                transition: all 0.3s;
+            }
+
+            #sidebar.active {
+                min-width: 80px;
+                max-width: 80px;
+                text-align: center;
+            }
+
+            #sidebar.active .sidebar-header h3,
+            #sidebar.active .CTAs {
+                display: none;
+            }
+
+            #sidebar.active .sidebar-header strong {
+                display: block;
+            }
+
+            #sidebar ul li a {
+                text-align: left;
+            }
+
+            #sidebar.active ul li a {
+                padding: 20px 10px;
+                text-align: center;
+                font-size: 0.85em;
+            }
+
+            #sidebar.active ul li a i {
+                margin-right: 0;
+                display: block;
+                font-size: 1.8em;
+                margin-bottom: 5px;
+            }
+
+            #sidebar.active ul ul a {
+                padding: 10px !important;
+            }
+
+            #sidebar.active .dropdown-toggle::after {
+                top: auto;
+                bottom: 10px;
+                right: 50%;
+                -webkit-transform: translateX(50%);
+                -ms-transform: translateX(50%);
+                transform: translateX(50%);
+            }
+
+            #sidebar .sidebar-header {
+                padding: 20px;
+                background: rgb(221,43,102,1);
+            }
+
+            #sidebar .sidebar-header strong {
+                display: none;
+                font-size: 1.8em;
+            }
+
+            #sidebar ul.components {
+                padding: 20px 0;
+                background: rgb(221,43,102,1);
+            }
+
+            #sidebar ul li a {
+                padding: 10px;
+                font-size: 1.1em;
+                display: block;
+            }
+
+            #sidebar ul li a:hover {
+                color: #7386D5;
+                background: #fff;
+            }
+
+            #sidebar ul li a i {
+                margin-right: 10px;
+            }
+
+            #sidebar ul li.active>a,
+            a[aria-expanded="true"] {
+                color: #fff;
+                background: rgb(221,43,102,1);
+            }
+
+            a[data-toggle="collapse"] {
+                position: relative;
+            }
+
+            .dropdown-toggle::after {
+                display: block;
+                position: absolute;
+                top: 50%;
+                right: 20px;
+                transform: translateY(-50%);
+            }
+
+            ul ul a {
+                font-size: 0.9em !important;
+                padding-left: 30px !important;
+                background: rgb(221,43,102,1);
+            }
+
+            ul.CTAs {
+                padding: 20px;
+            }
+
+            ul.CTAs a {
+                text-align: center;
+                font-size: 0.9em !important;
+                display: block;
+                border-radius: 5px;
+                margin-bottom: 5px;
+            }
+
             
         </style>
         
@@ -25,26 +289,116 @@
     <!--BODY-->
     <body class="template">
 
-        <!--HEADER-->
-        <header>
-
-        </header>
-
         <!--MAIN-->
         <main>
 
-        <h3>Hi + $[username]</h3>
+            <div class="container col-xl-8 chatroom-container">
+                <div class="row">
+                    <div class="header-bar col-xl-12">
+
+                    <h3>Hi + $[username]</h3>
+
+                    </div>
+                    
+                    <div class="wrapper">
+                        <!-- Sidebar  -->
+                        <nav id="sidebar">
+                            <div class="sidebar-header">
+                                <h3>Bootstrap Sidebar</h3>
+                                <strong>BS</strong>
+                                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                                    <i class="fas"></i>
+                                    <span id="hamburger"></span>
+                                </button>
+                                <button class="btn d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <i class="fas"></i>
+                                </button>
+                            </div>
+                
+                            <ul class="list-unstyled components">
+                                <li class="active">
+                                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                        <i class="fas fa-home"></i>
+                                        Home
+                                    </a>
+                                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                                        <li>
+                                            <a href="#">Home 1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Home 2</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Home 3</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-briefcase"></i>
+                                        About
+                                    </a>
+                                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                        <i class="fas fa-copy"></i>
+                                        Pages
+                                    </a>
+                                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                                        <li>
+                                            <a href="#">Page 1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Page 2</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Page 3</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-image"></i>
+                                        Portfolio
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-question"></i>
+                                        FAQ
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-paper-plane"></i>
+                                        Contact
+                                    </a>
+                                </li>
+                            </ul>
+                
+                        </nav>
+                
+                        <!-- Page Content  -->
+                        <div id="content">
+                
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
 
         </main>
-
-        <!--FOOTER-->
-        <footer>
-
-        </footer>
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar').toggleClass('active');
+                });
+            });
+        </script>
 
     </body>
 

@@ -13,9 +13,13 @@
         <!-- FILE LINKS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         
+        <!-- FONT LINKS -->
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
+
         <!-- WEBSITE TITLE -->
         <title>Jibber Gabber | Chat</title>
-        <link rel="icon" href="../public/img/logo-icon.svg">
+        <link rel="icon" href="http://localhost:8080/img/logo-icon.svg">
         
         <style>
 
@@ -37,38 +41,6 @@
                 width: 100%;
                 height: 100vh;
                 background: linear-gradient(90deg, rgba(49,50,56) 0%, rgba(22,22,25) 100%);
-            }
-
-            @font-face {
-                font-family: 'quicksandbold';
-                src: url('../public/fonts/quicksand-bold-webfont.woff') format('woff');
-                font-weight: normal;
-                font-style: normal;
-
-            }
-
-            @font-face {
-                font-family: 'quicksandlight';
-                src: url('../public/fonts/quicksand-light-webfont.woff') format('woff');
-                font-weight: normal;
-                font-style: normal;
-
-            }
-
-            @font-face {
-                font-family: 'quicksandregular';
-                src: url('../public/fonts/quicksand-regular-webfont.woff') format('woff');
-                font-weight: normal;
-                font-style: normal;
-
-            }
-
-            @font-face {
-                font-family: 'pacificoregular';
-                src: url('../public/fonts/pacifico-webfont.woff') format('woff');
-                font-weight: normal;
-                font-style: normal;
-
             }
 
             a {
@@ -101,7 +73,7 @@
 
             .header-bar {
                 height: 8vh;
-                background: rgb(49,50,56);
+                background: linear-gradient(90deg, rgba(49,50,56) 0%, rgba(22,22,25) 100%);
             }
 
             .side-bar {
@@ -154,7 +126,7 @@
                 height: 40px;
                 background-color: transparent;
                 float: right;
-                background-image: url("../public/img/full-bar.svg");
+                background-image: url("http://localhost:8080/img/full-bar.svg");
                 background-position: center;
                 background-size: contain;
                 background-repeat: no-repeat;
@@ -165,7 +137,7 @@
                 min-width: 300px;
                 max-width: 300px;
                 height: 62vh;
-                background: rgb(221,43,102,1);
+                background: linear-gradient(90deg, rgba(241,97,84,1) 0%, rgba(221,43,102,1) 100%);
                 color: #fff;
                 transition: all 0.3s;
             }
@@ -217,7 +189,7 @@
 
             #sidebar .sidebar-header {
                 padding: 20px;
-                background: rgb(221,43,102,1);
+                background: linear-gradient(90deg, rgba(241,97,84,1) 0%, rgba(221,43,102,1) 100%);
             }
 
             #sidebar .sidebar-header strong {
@@ -227,7 +199,7 @@
 
             #sidebar ul.components {
                 padding: 20px 0;
-                background: rgb(221,43,102,1);
+                background: linear-gradient(90deg, rgba(241,97,84,1) 0%, rgba(221,43,102,1) 100%);
             }
 
             #sidebar ul li a {
@@ -248,7 +220,7 @@
             #sidebar ul li.active>a,
             a[aria-expanded="true"] {
                 color: #fff;
-                background: rgb(221,43,102,1);
+                background: linear-gradient(90deg, rgba(241,97,84,1) 0%, rgba(221,43,102,1) 100%);
             }
 
             a[data-toggle="collapse"] {
@@ -266,7 +238,7 @@
             ul ul a {
                 font-size: 0.9em !important;
                 padding-left: 30px !important;
-                background: rgb(221,43,102,1);
+                background: linear-gradient(90deg, rgba(241,97,84,1) 0%, rgba(221,43,102,1) 100%);
             }
 
             ul.CTAs {
@@ -281,6 +253,110 @@
                 margin-bottom: 5px;
             }
 
+            .logo-icon {
+                width: 120px;
+                height: 120px;
+                background-image: url("http://localhost:8080/img/logo-icon.svg");
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                float: left;
+                margin-top: -10px;
+            }
+
+            .logo-text {
+                font-family: 'Pacifico', sans-serif;
+                float: left;
+                padding-top: 30px;
+                font-size: 32px;
+                color: whitesmoke;
+            }
+
+            .leave-room-btn {
+                float: right;
+                margin-top: 25px;
+                margin-right: 30px;
+            }
+
+            * {
+	            box-sizing: border-box;
+            }
+
+            *::before, *::after {
+                box-sizing: border-box;
+            }
+
+            /*
+            CSS Button styling Katherine Kato
+            https://codepen.io/kathykato/pen/KrBZro
+            */
+
+            button {
+                font-family: 'Quicksand', sans-serif;
+                position: relative;
+                display: inline-block;
+                cursor: pointer;
+                outline: none;
+                border: 0;
+                vertical-align: middle;
+                text-decoration: none;
+                font-size: inherit;
+                font-family: inherit;
+                
+            }
+
+            button.leave-room-btn {
+                transition: all 0.5s cubic-bezier(0.65, -0.25, 0.25, 1.95);
+                font-weight: 900;
+                color: whitesmoke;
+                padding: 0.8rem 1.5rem;
+                border-radius: 50px;
+                background: linear-gradient(90deg, rgba(241,97,84,1) 0%, rgba(221,43,102,1) 100%);
+                text-transform: uppercase;
+                font-family: 'Quicksand', sans-serif;
+            }
+            button.leave-room-btn:hover, button.leave-room-btn:focus, button.leave-room-btn:active {
+                letter-spacing: 0.125rem;
+            }
+            @supports (display: grid) {
+                body {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    grid-gap: 0.625rem;
+                    grid-template-areas: ". main main ." ". main main .";
+                }
+                #container {
+                    grid-area: main;
+                    align-self: center;
+                    justify-self: center;
+                }
+            }
+
+            .room-container {
+                height: 50px;
+            }
+
+            .room-icon {
+                height: 25px;
+                margin-top: 12px;
+                margin-left: 0px;
+                background-image: url("http://localhost:8080/img/chatroom.svg");
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                fill: antiquewhite;
+            }
+
+            .room-text {
+                height: 50px;
+                text-align: left;
+                padding-top: 8px;
+            }
+
+            .room-text h4 {
+                font-size: 25px;
+                font-family: 'Quicksand', sans-serif;
+            }
             
         </style>
         
@@ -295,8 +371,10 @@
             <div class="container col-xl-8 chatroom-container">
                 <div class="row">
                     <div class="header-bar col-xl-12">
-
-                    <h3>Hi + $[username]</h3>
+                        
+                    <div class="logo-icon"></div>
+                    <h3 class="logo-text">Jibber Gabber</h3>
+                    <button type="button" class="leave-room-btn">Leave Room</button>
 
                     </div>
                     
@@ -304,8 +382,17 @@
                         <!-- Sidebar  -->
                         <nav id="sidebar">
                             <div class="sidebar-header">
-                                <h3>Bootstrap Sidebar</h3>
-                                <strong>BS</strong>
+                                <div class="container col-xl-12 room-container">
+                                    <div class="row">
+
+                                        <div class="room-icon col-xl-2"></div>
+
+                                        <div class="room-text col-xl-10"><h4>Room Name</h4></div>
+
+                                    </div>
+                                </div>
+                                
+                                <strong>JG</strong>
                                 <button type="button" id="sidebarCollapse" class="btn btn-info">
                                     <i class="fas"></i>
                                     <span id="hamburger"></span>

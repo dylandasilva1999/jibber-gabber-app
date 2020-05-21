@@ -1,11 +1,28 @@
 const http = require('http'); 
 const queryString = require('querystring'); 
 var fs =  require('fs'); 
-const template = require('es6-template-strings'); 
+const template = require('es6-template-strings');
+const static = require('node-static') 
 
-var contacts = []; 
+var contacts = [];
 
-const server = http.createServer(); 
+var io = require('socket.io')(server);
+
+const fileServer = new static.Server('./public');
+
+const server = http.createServer((request, response) => {
+  request.addListener('end', function () {
+    fileServer.serve(request, response, function (e, res) {
+      if (e && (e.status === 404)) { // If the file wasn't found
+        // fileServer.serveFile('/not-found.html', 404, {}, request, response);
+      }
+    });
+  }).resume();
+});
+
+io.on('connection', (socket) => {
+    console.log('a user connected');
+})
 
 var simpleRouter = function(request) {
   var method = request.method;
@@ -63,13 +80,15 @@ var handleFormPost = function(request, response) {
 }
 
 
-server.on("request", function(request, response) {
+server.on("request", function (request, response) {
   var handler = simpleRouter(request);
   if (handler != null) {
+    console.log('handler')
     handler(request, response);
   } else {
-    response.writeHead(404);
-    response.end();
+    // console.log('404 handler')
+    // response.writeHead(404);
+    // response.end();
   }
 })
 

@@ -4,9 +4,14 @@ var fs =  require('fs');
 const template = require('es6-template-strings');
 const static = require('node-static') 
 
-var contacts = [];
+var loginUsers = [];
 
-var io = require('socket.io')(server);
+var databaseOfUser = [
+  {
+    username: "Dylan",
+    password: 123
+  }
+]
 
 const fileServer = new static.Server('./public');
 
@@ -14,14 +19,25 @@ const server = http.createServer((request, response) => {
   request.addListener('end', function () {
     fileServer.serve(request, response, function (e, res) {
       if (e && (e.status === 404)) { // If the file wasn't found
-        // fileServer.serveFile('/not-found.html', 404, {}, request, response);
+        //fileServer.serveFile('/not-found.html', 404, {}, request, response);
       }
     });
   }).resume();
 });
 
+var io = require('socket.io')(server);
+
 io.on('connection', (socket) => {
     console.log('a user connected');
+    io.emit('clientConnected', 'You have connected to the chat server');
+
+    socket.on('chatroom', (msg) => {
+      console.log(`This was a message from chatroom: ${msg}`);
+    });
+  
+    socket.on('disconnect', () => {
+      io.emit('user disconnected');
+    });
 })
 
 var simpleRouter = function(request) {
@@ -68,17 +84,48 @@ var handleFormPost = function(request, response) {
 
   request.on('end', function () {
     var post = queryString.parse(payload);
-    contacts.push(post['username']);
-    response.writeHead(200, {"Content-Type": "text/html"});
-    fs.readFile('./public/chat.html', 'utf8', function(err, data) {
-      if (err) { throw err; }
-      var compiled = template(data, {username: post['username'], userList: contacts.join(",")});
-      response.write(compiled);
-      response.end();
-    });
-  });
-}
+    loginUsers.push(post['username']);
+    
+    for(dbUser of database){
+      if(dbUser.username === user.username && dbUser.password === user.password) {
+        response.writeHead(200, {"Content-Type": "text/html"});
+        fs.readFile('./public/chat.html', 'utf8', function(err, data) {
+          if (err) { throw err; }
+          var values = {
+            username: post['username'],
+            loggedUsers: listLoginUsers(loginUsers)
+          }
+          var compiled = template(data, values);
+          response.write(compiled);
+          response.end();
+        });
+      }
+      response.writeHead(200, {"Content-Type": "text/html"});
+        fs.readFile('./public/404.html', 'utf8', function(err, data) {
+          if (err) { throw err; }
+          var values = {
+            username: post['username'],
+            loggedUsers: listLoginUsers(loginUsers)
+          }
+          var compiled = template(data, values);
+          response.write(compiled);
+          response.end();
+        });
+    };
+  })
+}  
 
+const listLoginUsers = (loggedUsers) => {
+  //return loggedUsers.map(user => `<li>${user.username}</li>`)
+  var list = '';
+  for (user in loggedUsers) {
+    list += 
+      `<li>
+        <h4>${user.username}</h4>
+        </li>`
+  }
+  return list
+}
 
 server.on("request", function (request, response) {
   var handler = simpleRouter(request);

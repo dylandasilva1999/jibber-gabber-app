@@ -108,6 +108,10 @@
                 display: inline-block;
             }
 
+            .row {
+                overflow: hidden;
+            }
+
             /* ---------------------------------------------------
                 SIDEBAR STYLE
             ----------------------------------------------------- */
@@ -134,12 +138,14 @@
             }
 
             #sidebar {
-                min-width: 300px;
-                max-width: 300px;
-                height: 62vh;
+                min-width: 260px;
+                max-width: 260px;
+                height: 56vh;
                 background: linear-gradient(90deg, rgba(241,97,84,1) 0%, rgba(221,43,102,1) 100%);
                 color: #fff;
                 transition: all 0.3s;
+                float: left;
+                display: inline-block;
             }
 
             #sidebar.active {
@@ -357,6 +363,31 @@
                 font-size: 25px;
                 font-family: 'Quicksand', sans-serif;
             }
+
+            .chat-area {
+                width: 100%;
+                background-color: bisque;
+            }
+
+            .chat-section { 
+                background-color: bisque;
+            }
+
+            .type-bar {
+                height: 6vh;
+                background-color: #7386D5;
+                
+            }
+
+            #msg {
+                width: 90%;
+                margin: 0 auto;
+                
+            }
+
+            .btn-send {
+                
+            }
             
         </style>
         
@@ -368,7 +399,7 @@
         <!--MAIN-->
         <main>
 
-            <div class="container col-xl-8 chatroom-container">
+            <div class="container col-xl-8 d-none d-xl-block chatroom-container">
                 <div class="row">
                     <div class="header-bar col-xl-12">
                         
@@ -378,18 +409,14 @@
 
                     </div>
                     
-                    <div class="wrapper">
+                    <div class="wrapper d-flex align-items-stretch">
                         <!-- Sidebar  -->
                         <nav id="sidebar">
                             <div class="sidebar-header">
                                 <div class="container col-xl-12 room-container">
-                                    <div class="row">
 
-                                        <div class="room-icon col-xl-2"></div>
+                                    <h3>Hello ${username}</h3>
 
-                                        <div class="room-text col-xl-10"><h4>Room Name</h4></div>
-
-                                    </div>
                                 </div>
                                 
                                 <strong>JG</strong>
@@ -406,7 +433,7 @@
                                 <li class="active">
                                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                                         <i class="fas fa-home"></i>
-                                        Home
+                                        Rooms
                                     </a>
                                     <ul class="collapse list-unstyled" id="homeSubmenu">
                                         <li>
@@ -454,22 +481,42 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        <i class="fas fa-paper-plane"></i>
-                                        Contact
-                                    </a>
+                                    <ul class="online-users" id="">
+                                        
+                                    </ul>
                                 </li>
                             </ul>
                 
                         </nav>
-                
-                        <!-- Page Content  -->
-                        <div id="content">
-                
-                            
+                        
+                    </div>
+
+                    <div class="container-fluid col-xl-8 chat-section float-right">
+                        <div class="row">
+                            <!-- Page Content  -->
+                            <div id="content" class="chat-area">
+                        
+                                <h1>Hello There</h1>
+                                
+                            </div>
                         </div>
                     </div>
-                    
+
+                    <div class="type-bar col-xl-12">
+
+                        <form id="chat-form">
+                            <input
+                              id="msg"
+                              type="text"
+                              placeholder="Enter Message"
+                              required
+                              autocomplete="off"
+                            />
+                            <button class="btn-send"><i class="fas fa-paper-plane"></i> Send</button>
+                          </form>
+
+                    </div>
+
                 </div>
             </div>
 
@@ -478,12 +525,18 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#sidebarCollapse').on('click', function () {
                     $('#sidebar').toggleClass('active');
                 });
+            });
+
+            const socket = io('http://localhost:8080' , {transports: ['websocket'] });
+            socket.on('clientConnected', function (msg) {
+                console.log(msg);
             });
         </script>
 

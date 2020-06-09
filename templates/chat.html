@@ -81,21 +81,6 @@
                 background-color: brown;
             }
 
-            .navbar {
-                padding: 15px 10px;
-                background: #fff;
-                border: none;
-                border-radius: 0;
-                margin-bottom: 40px;
-                box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-            }
-
-            .navbar-btn {
-                box-shadow: none;
-                outline: none !important;
-                border: none;
-            }
-
             .line {
                 width: 100%;
                 height: 1px;
@@ -112,10 +97,6 @@
                 overflow: hidden;
             }
 
-            /* ---------------------------------------------------
-                SIDEBAR STYLE
-            ----------------------------------------------------- */
-
             .wrapper {
                 display: flex;
                 align-items: stretch;
@@ -123,18 +104,6 @@
 
             .btn {
                 background-color: white;
-            }
-
-            #sidebarCollapse {
-                width: 40px;
-                height: 40px;
-                background-color: transparent;
-                float: right;
-                background-image: url("http://localhost:8080/img/full-bar.svg");
-                background-position: center;
-                background-size: contain;
-                background-repeat: no-repeat;
-                border: none;
             }
 
             #sidebar {
@@ -215,7 +184,7 @@
             }
 
             #sidebar ul li a:hover {
-                color: #7386D5;
+                color: #f16154;
                 background: #fff;
             }
 
@@ -321,9 +290,11 @@
                 text-transform: uppercase;
                 font-family: 'Quicksand', sans-serif;
             }
+
             button.leave-room-btn:hover, button.leave-room-btn:focus, button.leave-room-btn:active {
                 letter-spacing: 0.125rem;
             }
+
             @supports (display: grid) {
                 body {
                     display: grid;
@@ -375,19 +346,38 @@
 
             .type-bar {
                 height: 6vh;
-                background-color: #7386D5;
-                
+                background: linear-gradient(90deg, rgba(49,50,56) 0%, rgba(22,22,25) 100%);
             }
 
             #msg {
                 width: 90%;
                 margin: 0 auto;
-                
+            }
+
+            #message {
+                width: 90%;
+                margin-left: 1%;
+                margin-top: 20px;
+                padding: 6px;
+                border-radius: 50px;
+                border: 2px solid #f16154;
+            }
+
+            .btn-send {
+                width: 7%;
+                text-align: center;
+                padding: 8px;
+                margin-left: 1%;
+                border-radius: 50px;
+                font-size: 18px;
+                font-weight: bold;
+                letter-spacing: 2px;
+                font-family: 'Quicksand', sans-serif;
             }
             
         </style>
         
-    </head> <!-- END OF HEAD -->
+    </head> <!-- End of Head -->
     
     <!--BODY-->
     <body class="template">
@@ -411,73 +401,42 @@
                             <div class="sidebar-header">
                                 <div class="container col-xl-12 room-container">
 
-                                    <h3>Hello ${username}</h3>
+                                    <h3>Hello ${user}</h3>
 
                                 </div>
-                                
-                                <strong>JG</strong>
-                                <button type="button" id="sidebarCollapse" class="btn btn-info">
-                                    <i class="fas"></i>
-                                    <span id="hamburger"></span>
-                                </button>
-                                <button class="btn d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                    <i class="fas"></i>
-                                </button>
                             </div>
                 
                             <ul class="list-unstyled components">
                                 <li class="active">
-                                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                                        <i class="fas fa-home"></i>
+                                    <a href="#roomsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                        <i class="fas fa-rooms"></i>
                                         Rooms
                                     </a>
-                                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                                    <ul class="collapse list-unstyled" id="roomsSubmenu">
                                         <li>
-                                            <a href="#">Home 1</a>
+                                            <a href="#">JavaScript</a>
                                         </li>
                                         <li>
-                                            <a href="#">Home 2</a>
+                                            <a href="#">React</a>
                                         </li>
                                         <li>
-                                            <a href="#">Home 3</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fas fa-briefcase"></i>
-                                        About
-                                    </a>
-                                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                                        <i class="fas fa-copy"></i>
-                                        Pages
-                                    </a>
-                                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                                        <li>
-                                            <a href="#">Page 1</a>
+                                            <a href="#">NodeJS</a>
                                         </li>
                                         <li>
-                                            <a href="#">Page 2</a>
+                                            <a href="#">CSS</a>
                                         </li>
                                         <li>
-                                            <a href="#">Page 3</a>
+                                            <a href="#">HTML</a>
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fas fa-image"></i>
-                                        Portfolio
+
+                                <li class="active">
+                                    <a href="#usersSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                        <i class="fas fa-users"></i>
+                                        Online Users
                                     </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fas fa-question"></i>
-                                        FAQ
-                                    </a>
-                                </li>
-                                <li>
-                                    <ul class="online-users" id="online-users">
+                                    <ul class="collapse list-unstyled" id="usersSubmenu">
                                         
                                     </ul>
                                 </li>
@@ -502,16 +461,14 @@
 
                     <div class="type-bar col-xl-12">
 
-                        <form id="chat-form">
+                        <!-- <form id="chat-form"> -->
                             <input
                               id="message"
                               type="text"
                               placeholder="Enter Message"
-                              required
-                              autocomplete="off"
                             />
-                            <button class="btn-send"><i class="fas fa-paper-plane" onclick="sendMsg()"></i> Send</button>
-                          </form>
+                            <button class="btn-send" onclick="sendMsg()"><i class="fas fa-paper-plane" ></i> Send</button>
+                          <!-- </form> -->
 
                     </div>
 
@@ -519,41 +476,60 @@
             </div>
 
         </main>
+        <!-- <script>
+        function send() {
+            console.log("send message")
+        }</script> -->
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 
-        <script type="text/javascript">
+        <script>
+        console.log("Loaded script")
+        
             $(document).ready(function () {
                 $('#sidebarCollapse').on('click', function () {
                     $('#sidebar').toggleClass('active');
                 });
             });
 
-            const socket = io('http://localhost:8080' , {transports: ['websocket'] });
+            const socket = io('http://localhost:8080' 
+            ,{transports: ['websocket'] }
+            );
+            var socketId = 'empty'
+            
             socket.on('clientConnected', function (msg) {
                 console.log(msg);
+                socketId = socket.id
                 var messageElement = document.createElement('li')
                 messageElement.textContent = msg
                 var messageBox = document.getElementById('messageList').appendChild(messageElement);
+                
             });
+            
 
-            socket.on('chatroom', msg) => {
+            socket.on('chatroom', function (msg) {
+                    console.log(msg)
                 var messageElement = document.createElement('li')
-                messageElement.textContent = msg.username + " " + msg.message
+                messageElement.textContent = "ID: " + msg.id + "  Username: " + msg.username + " Message: " + msg.message
                 var messageBox = document.getElementById('messageList').appendChild(messageElement);
-            }
+            }) 
+
+            
 
             function sendMsg(e) {
+                console.log("send clicked")
+                // e.preventDefault()
                 var message = document.getElementById('message').value;
-                var id = socket.id
+                console.log(socketId)
                 var msgObj = {
-                    id: id,
-                    username: "",
+                    id: socketId,
+                    username: "fake username",
+                    message: message
                 }
-                socket.emit('chatroom', message)
+                socket.emit('chatroom', msgObj)
             }
         </script>
 

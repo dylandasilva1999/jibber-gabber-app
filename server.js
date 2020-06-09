@@ -28,6 +28,7 @@ io.on('connection', (socket) => {
 
     socket.on('chatroom', (msg) => {
       console.log(`This was a message from chatroom: ${msg}`);
+      io.emit('chatroom', msg)
     });
   
     socket.on('disconnect', () => {
@@ -65,7 +66,11 @@ var handleLoginGet = function(request, response) {
   response.writeHead(200, {'Content-Type': 'text/html'});
   fs.readFile('./templates/login.html', 'utf8', function(err, data) {
     if (err) { throw err; }
-    response.write(data);
+    var values = {
+      username: "The Username"
+    }
+    var compiled = template(data, values)
+    response.write(compiled);
     response.end();
   });
 }
@@ -74,7 +79,12 @@ var handleChatGet = function(request, response) {
   response.writeHead(200, {'Content-Type': 'text/html'});
   fs.readFile('./templates/chat.html', 'utf8', function(err, data) {
     if (err) { throw err; }
-    response.write(data);
+    var values = {
+      user: "The Username"
+    }
+    var compiled = template(data, values)
+    response.write(compiled);
+    // response.write(data);
     response.end();
   });
 }
@@ -131,13 +141,12 @@ var handleLoginPost = function(request, response) {
 }
 
 const listLoginUsers = (loggedUsers) => {
-  //return loggedUsers.map(user => `<li>${user.username}</li>`)
   var list = '';
   for (user in loggedUsers) {
     list += 
       `<li>
         <h4>${user.username}</h4>
-        </li>`
+      </li>`
   }
   return list
 }
@@ -154,7 +163,6 @@ server.on("request", function (request, response) {
         fileServer.serveFile('../templates/404.html', 404, {}, request, response);
       }
     });
-
   }
 })
 

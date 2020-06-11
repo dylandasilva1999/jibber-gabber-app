@@ -337,11 +337,10 @@
 
             .chat-area {
                 width: 100%;
-                background-color: bisque;
             }
 
-            .chat-section { 
-                background-color: bisque;
+            .chat-section {
+                margin-top: 20px;
             }
 
             .type-bar {
@@ -374,6 +373,20 @@
                 letter-spacing: 2px;
                 font-family: 'Quicksand', sans-serif;
             }
+
+            .divider {
+                width: 80%;
+                height: 2px;
+                margin: 0 auto;
+                background-color: rgba(255,255,255,0.3);
+                margin-top: 20px;
+            }
+
+            #messageList {
+                background: linear-gradient(90deg, rgba(241,97,84,1) 0%, rgba(221,43,102,1) 100%);
+                padding: 20px;
+                color: #fff;
+            }
             
         </style>
         
@@ -391,7 +404,7 @@
                         
                     <div class="logo-icon"></div>
                     <h3 class="logo-text">Jibber Gabber</h3>
-                    <button type="button" class="leave-room-btn">Leave Room</button>
+                    <a href="http://localhost:8080"><button type="button" class="leave-room-btn">Leave Room</button></a>
 
                     </div>
                     
@@ -401,12 +414,18 @@
                             <div class="sidebar-header">
                                 <div class="container col-xl-12 room-container">
 
-                                    <h3>Hello ${user}</h3>
+                                    <h5>Welcome to the
+                                        Jibber Gabber
+                                        Chatroom
+                                    </h5>
 
                                 </div>
                             </div>
+
+                            <div class="divider"></div>
                 
                             <ul class="list-unstyled components">
+                                <!--
                                 <li class="active">
                                     <a href="#roomsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                                         <i class="fas fa-rooms"></i>
@@ -430,7 +449,7 @@
                                         </li>
                                     </ul>
                                 </li>
-
+                                -->
                                 <li class="active">
                                     <a href="#usersSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                                         <i class="fas fa-users"></i>
@@ -446,7 +465,7 @@
                         
                     </div>
 
-                    <div class="container-fluid col-xl-8 chat-section float-right">
+                    <div class="container-fluid col-xl-9 chat-section float-right">
                         <div class="row">
                             <!-- Page Content  -->
                             <div id="content" class="chat-area">
@@ -476,10 +495,6 @@
             </div>
 
         </main>
-        <!-- <script>
-        function send() {
-            console.log("send message")
-        }</script> -->
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -487,17 +502,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 
         <script>
-        console.log("Loaded script")
-        
-            $(document).ready(function () {
-                $('#sidebarCollapse').on('click', function () {
-                    $('#sidebar').toggleClass('active');
-                });
-            });
 
-            const socket = io('http://localhost:8080' 
-            ,{transports: ['websocket'] }
-            );
+            const socket = io('http://localhost:8080' ,{transports: ['websocket'] });
+
             var socketId = 'empty'
             
             socket.on('clientConnected', function (msg) {
@@ -513,7 +520,7 @@
             socket.on('chatroom', function (msg) {
                     console.log(msg)
                 var messageElement = document.createElement('li')
-                messageElement.textContent = "ID: " + msg.id + "  Username: " + msg.username + " Message: " + msg.message
+                messageElement.textContent = "Username: " + msg.username + " Message: " + msg.message
                 var messageBox = document.getElementById('messageList').appendChild(messageElement);
             }) 
 
@@ -526,7 +533,7 @@
                 console.log(socketId)
                 var msgObj = {
                     id: socketId,
-                    username: "fake username",
+                    username: "Dylan",
                     message: message
                 }
                 socket.emit('chatroom', msgObj)

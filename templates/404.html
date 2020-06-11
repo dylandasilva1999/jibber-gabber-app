@@ -202,7 +202,7 @@
 
             .information-text {
                 margin-top: 46vh;
-                margin-left: 28%;
+                margin-left: 29%;
                 position: fixed;
             }
 
@@ -224,6 +224,40 @@
                 position: absolute;
                 margin-top: 68vh;
                 margin-left: 35%;
+            }
+
+            /*
+            CSS Button styling Katherine Kato
+            https://codepen.io/kathykato/pen/KrBZro
+            */
+
+            button {
+                font-family: 'Quicksand', sans-serif;
+                position: relative;
+                display: inline-block;
+                cursor: pointer;
+                outline: none;
+                border: 0;
+                vertical-align: middle;
+                text-decoration: none;
+                font-size: inherit;
+                font-family: inherit;
+                
+            }
+
+            button.leave-room-btn {
+                transition: all 0.5s cubic-bezier(0.65, -0.25, 0.25, 1.95);
+                font-weight: 900;
+                color: whitesmoke;
+                padding: 0.8rem 1.5rem;
+                border-radius: 50px;
+                background: linear-gradient(90deg, rgba(241,97,84,1) 0%, rgba(221,43,102,1) 100%);
+                text-transform: uppercase;
+                font-family: 'Quicksand', sans-serif;
+            }
+
+            button.leave-room-btn:hover, button.leave-room-btn:focus, button.leave-room-btn:active {
+                letter-spacing: 0.125rem;
             }
             
         </style>
@@ -251,8 +285,7 @@
                 </div> <!--Information Text Div-->
                 <div class="buttons">
 
-                    <btn>Previous Page</btn>
-                    <btn>Back to Log In</btn>
+                    <a href="http://localhost:8080"><button type="button" class="leave-room-btn">Back to Log In</button></a>
                     
                 </div>
 

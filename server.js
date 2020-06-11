@@ -6,7 +6,7 @@ const template = require('es6-template-strings');
 
 const static = require('node-static') 
 
-var loginUsers = [];
+var loginUsers = ["Dylan"];
 
 var databaseOfUser = [
   {
@@ -67,7 +67,7 @@ var handleLoginGet = function(request, response) {
   fs.readFile('./templates/login.html', 'utf8', function(err, data) {
     if (err) { throw err; }
     var values = {
-      username: "The Username"
+      username: "Dylan"
     }
     var compiled = template(data, values)
     response.write(compiled);
@@ -80,7 +80,7 @@ var handleChatGet = function(request, response) {
   fs.readFile('./templates/chat.html', 'utf8', function(err, data) {
     if (err) { throw err; }
     var values = {
-      user: "The Username"
+      user: ""
     }
     var compiled = template(data, values)
     response.write(compiled);

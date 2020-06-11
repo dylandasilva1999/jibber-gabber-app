@@ -63,7 +63,7 @@ var simpleRouter = function(request) {
 }
 
 var handleLoginGet = function(request, response) {
-  response.writeHead(200, {'Content-Type': 'text/html'});
+  response.writeHead(302, {'Content-Type': 'text/html'});
   fs.readFile('./templates/login.html', 'utf8', function(err, data) {
     if (err) { throw err; }
     var values = {
@@ -80,16 +80,24 @@ var handleChatGet = function(request, response) {
   fs.readFile('./templates/chat.html', 'utf8', function(err, data) {
     if (err) { throw err; }
     var values = {
-      user: ""
+      loggedUser: listLoginUsers(loginUsers)
     }
     var compiled = template(data, values)
     response.write(compiled);
-    // response.write(data);
     response.end();
   });
 }
 
 var handleLoginPost = function(request, response) {
+  
+  response.writeHead(302, {
+    'Location': '/chat'
+  });
+  response.end();
+
+  
+
+  /*
   response.writeHead(200, {'Content-Type': 'text/html'});
   var payload = '';
 
@@ -138,11 +146,12 @@ var handleLoginPost = function(request, response) {
       });
     }
   })
+  */
 }
 
-const listLoginUsers = (loggedUsers) => {
+const listLoginUsers = (loginUsers) => {
   var list = '';
-  for (user in loggedUsers) {
+  for (user of loginUsers) {
     list += 
       `<li>
         <h4>${user.username}</h4>
